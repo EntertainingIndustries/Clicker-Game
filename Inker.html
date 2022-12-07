@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+background-color: black;
+color: white;
+text-align: center;
+}
+</style>
+<title>Inker</title>
+</head>
+<body>
+    <p style="font-size: 100px;">Inker</p>
+    <p style="font-size: 100px;" id="item">Ink: 0</p>
+    <p style="font-size: 100px;" id="cash">Cash: 10</p>
+    <p></p><button onclick="good()" style="font-size: 69px; border-radius: 5%;">Collect Ink</button>
+    <p></p><button onclick="good1()" style="font-size: 69px; border-radius: 5%;">Empty Capsule</button>
+    <p></p><button onclick="good2()" style="font-size: 69px; border-radius: 5%;">Sell</button>
+    <p></p><button onclick="good3()" style="font-size: 69px; border-radius: 5%;">Sell All</button>
+    <p><button onclick="good4()" style="font-size: 69px; border-radius: 5%;">Upgrade Pen $<span id="bait cost">20</span></button></p>
+    <p><button onclick="good5()" style="font-size: 69px; border-radius: 5%;">Change Color $<span id="lake cost">200</span></button></p>
+    <p><button onclick="good6()" style="font-size: 69px; border-radius: 5%;">Make an annoncement on live TV</button></p>
+    <p>  
+    </p>
+    <a href="https://entertiningindustriesco.itch.io/" style="color: ghostwhite; font-size: 50px;">By Entertaining Industries</a>
+<script>
+var score = 0;
+var cash = 10;
+var checkpoint = 0;
+var nextbait = 20;
+var baitvalue = 1;
+var nextlake = 200;
+var lakevalue = 1;
+var generatorcount = 0;
+var inkvalue = 10;
+var speechvalue = 200;
+function good() {
+    if (cash > -10) {
+    score = score + baitvalue;
+    cash = cash - 1;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+};
+function good1() {
+    if (cash > 0) {
+    score = score + Math.floor(Math.random() * 5 * baitvalue);
+    cash = cash - 5;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+};
+function good2() {
+    if (score > 0) {
+    score = score - 1;
+    cash = cash + inkvalue;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+    if (score > 100) {
+        inkvalue = 3;
+    }
+    else {
+        inkvalue = 10;
+    }
+};
+function good3() {
+    if (score > 0) {
+    cash = cash + (score * inkvalue);
+    score = score - score;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+    if (score > 100) {
+        inkvalue = 3;
+    }
+    else {
+        inkvalue = 10;
+    }
+};
+function good4() {
+    if (cash > nextbait) {
+    cash = cash - nextbait;
+    baitvalue = baitvalue + 1;
+    nextbait = nextbait * 12.5;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+    document.getElementById('bait cost').innerHTML = nextbait;
+};
+function good5() {
+    if (cash > nextlake) {
+    cash = cash - nextlake;
+    lakevalue = lakevalue + 1;
+    nextlake = nextlake * 12.5;
+    }
+    document.getElementById('item').innerHTML = "Ink: " + score;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+    document.getElementById('lake cost').innerHTML = nextlake;
+};
+
+function good6() {
+    cash = cash + speechvalue;
+    speechvalue = speechvalue / 2;
+    document.getElementById('cash').innerHTML = "Cash: " + cash;
+};
+
+if (cash < 0) {
+    while (1 < 2) {
+        alert("Bankrupt")
+    }
+}
+</script>
+</body>
+</html>
